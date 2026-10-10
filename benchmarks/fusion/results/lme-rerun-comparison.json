@@ -1,0 +1,50 @@
+{
+  "dataset": "LongMemEval-S cleaned",
+  "selection": "pilot-manifest.json, 30 questions, six categories x five",
+  "embedding": "BGE-M3 via MaaS, 1024 dimensions",
+  "top_k": 20,
+  "baseline": {
+    "binary": "benchmarks/fusion/runtime/bin/baseline-memoria",
+    "run_dir": "/Users/muuushroom/gitrepos/moi-benchmark/memoria/runs/fusion-lme-maas-bge-m3-v1/rerun-baseline",
+    "mrr": 0.673889,
+    "recall@5": 0.733333,
+    "recall@10": 0.925,
+    "recall@20": 0.95,
+    "hit@5": 0.8,
+    "complete_recall@5": 0.666667,
+    "latency_p50_ms": 496.349,
+    "latency_p95_ms": 685.972,
+    "retrieval_paths": {"graph": 4, "graph+vector": 10, "hybrid": 16}
+  },
+  "rrf_k60": {
+    "binary": "benchmarks/fusion/runtime/bin/modified-memoria",
+    "run_dir": "/Users/muuushroom/gitrepos/moi-benchmark/memoria/runs/fusion-lme-maas-bge-m3-v1/rerun-modified",
+    "mrr": 0.671111,
+    "recall@5": 0.766667,
+    "recall@10": 0.925,
+    "recall@20": 0.95,
+    "hit@5": 0.833333,
+    "complete_recall@5": 0.7,
+    "latency_p50_ms": 451.244,
+    "latency_p95_ms": 630.153,
+    "retrieval_paths": {"graph": 4, "graph+vector": 10, "hybrid": 16}
+  },
+  "delta_rrf_minus_baseline": {
+    "mrr": -0.002778,
+    "recall@5": 0.033334,
+    "recall@10": 0.0,
+    "recall@20": 0.0,
+    "hit@5": 0.033333,
+    "complete_recall@5": 0.033333,
+    "latency_p50_ms": -45.105,
+    "latency_p95_ms": -55.819,
+    "changed_query_orders": 10,
+    "recall@5_wins_ties_losses": [3, 26, 1],
+    "mrr_wins_ties_losses": [1, 28, 1]
+  },
+  "notes": [
+    "Retrieval-only evaluation; no Reader/Judge calls.",
+    "Native graph backfill had zero edges, so this does not validate multi-hop graph construction.",
+    "The native benchmark scorer is order-insensitive; LongMemEval retrieval metrics are used for ranking comparison."
+  ]
+}

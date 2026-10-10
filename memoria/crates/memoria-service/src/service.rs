@@ -213,6 +213,99 @@ pub struct CandidateScore {
     pub keyword_score: f64,
     pub temporal_score: f64,
     pub confidence_score: f64,
+    /// Rank-based fusion diagnostics. Populated for graph+hybrid results.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub graph_rank: Option<usize>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub hybrid_rank: Option<usize>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub graph_score: Option<f64>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub hybrid_score: Option<f64>,
+}
+
+const GRAPH_HYBRID_RRF_K: f64 = 60.0;
+
+/// Scores are comparable only within a channel; fuse the two unique ranked lists.
+fn fuse_graph_hybrid(
+    graph: Vec<Memory>,
+    hybrid: Vec<Memory>,
+    hybrid_scores: Vec<(String, f64, f64, f64, f64, f64)>,
+    top_k: usize,
+) -> (Vec<Memory>, Vec<CandidateScore>) {
+    fn ranked_unique(mut memories: Vec<Memory>) -> Vec<Memory> {
+        memories.sort_by(|a, b| {
+            b.retrieval_score
+                .filter(|s| s.is_finite())
+                .partial_cmp(&a.retrieval_score.filter(|s| s.is_finite()))
+                .unwrap_or(std::cmp::Ordering::Equal)
+                .then_with(|| a.memory_id.cmp(&b.memory_id))
+        });
+        let mut seen = std::collections::HashSet::new();
+        memories.retain(|m| seen.insert(m.memory_id.clone()));
+        memories
+    }
+    let breakdown: HashMap<_, _> = hybrid_scores
+        .into_iter()
+        .map(|(id, vs, ks, ts, cs, _)| (id, (vs, ks, ts, cs)))
+        .collect();
+    let mut candidates: HashMap<String, (Memory, CandidateScore)> = HashMap::new();
+    for (is_graph, memories) in [(true, graph), (false, hybrid)] {
+        for (index, memory) in ranked_unique(memories).into_iter().enumerate() {
+            let rank = index + 1;
+            let raw_score = memory.retrieval_score.filter(|s| s.is_finite());
+            let id = memory.memory_id.clone();
+            let (stored, score) = candidates.entry(id.clone()).or_insert_with(|| {
+                (
+                    memory.clone(),
+                    CandidateScore {
+                        memory_id: id,
+                        rank: 0,
+                        final_score: 0.0,
+                        vector_score: 0.0,
+                        keyword_score: 0.0,
+                        temporal_score: 0.0,
+                        confidence_score: 0.0,
+                        graph_rank: None,
+                        hybrid_rank: None,
+                        graph_score: None,
+                        hybrid_score: None,
+                    },
+                )
+            });
+            score.final_score += 1.0 / (GRAPH_HYBRID_RRF_K + rank as f64);
+            if is_graph {
+                score.graph_rank = Some(rank);
+                score.graph_score = raw_score;
+            } else {
+                *stored = memory;
+                score.hybrid_rank = Some(rank);
+                score.hybrid_score = raw_score;
+                if let Some(&(vs, ks, ts, cs)) = breakdown.get(&score.memory_id) {
+                    score.vector_score = round4(vs);
+                    score.keyword_score = round4(ks);
+                    score.temporal_score = round4(ts);
+                    score.confidence_score = round4(cs);
+                }
+            }
+        }
+    }
+    let mut ranked: Vec<_> = candidates.into_values().collect();
+    ranked.sort_by(|(_, a), (_, b)| {
+        b.final_score
+            .total_cmp(&a.final_score)
+            .then_with(|| a.memory_id.cmp(&b.memory_id))
+    });
+    ranked.truncate(top_k);
+    ranked
+        .into_iter()
+        .enumerate()
+        .map(|(index, (mut memory, mut score))| {
+            score.rank = index + 1;
+            memory.retrieval_score = Some(score.final_score);
+            (memory, score)
+        })
+        .unzip()
 }
 
 /// Explain stats for retrieve/search — like SQL EXPLAIN ANALYZE.
@@ -1483,8 +1576,12 @@ impl MemoryService {
                                 memory_type: memory.memory_type.to_string(),
                                 trust_tier: memory.trust_tier.to_string(),
                             });
-                            self.enqueue_entity_extraction(user_id, &memory.memory_id, &memory.content)
-                                .await;
+                            self.enqueue_entity_extraction(
+                                user_id,
+                                &memory.memory_id,
+                                &memory.content,
+                            )
+                            .await;
                             return Ok(memory);
                         }
                     }
@@ -1861,44 +1958,14 @@ impl MemoryService {
                             explain.vector_ms = vs_start.elapsed().as_secs_f64() * 1000.0;
                             explain.vector_hit = !vec_results.is_empty();
 
-                            // Merge: dedup (keep higher score), sort by score
-                            for m in vec_results {
-                                if seen.insert(m.memory_id.clone()) {
-                                    graph_memories.push(m);
-                                } else {
-                                    // Memory exists from graph — use higher score
-                                    if let Some(existing) = graph_memories
-                                        .iter_mut()
-                                        .find(|g| g.memory_id == m.memory_id)
-                                    {
-                                        if m.retrieval_score > existing.retrieval_score {
-                                            existing.retrieval_score = m.retrieval_score;
-                                        }
-                                    }
-                                }
-                            }
-
-                            graph_memories.sort_by(|a, b| {
-                                b.retrieval_score
-                                    .partial_cmp(&a.retrieval_score)
-                                    .unwrap_or(std::cmp::Ordering::Equal)
-                            });
-                            graph_memories.truncate(top_k as usize);
-
+                            let (graph_memories, fusion_scores) = fuse_graph_hybrid(
+                                graph_memories,
+                                vec_results,
+                                scores,
+                                top_k.max(0) as usize,
+                            );
                             if level.at_least(ExplainLevel::Verbose) {
-                                explain.candidate_scores = scores
-                                    .into_iter()
-                                    .enumerate()
-                                    .map(|(i, (id, vs, ks, ts, cs, fs))| CandidateScore {
-                                        memory_id: id,
-                                        rank: i + 1,
-                                        final_score: round4(fs),
-                                        vector_score: round4(vs),
-                                        keyword_score: round4(ks),
-                                        temporal_score: round4(ts),
-                                        confidence_score: round4(cs),
-                                    })
-                                    .collect();
+                                explain.candidate_scores = fusion_scores;
                             }
                             explain.path = "graph+vector";
                             explain.result_count = graph_memories.len();
@@ -1950,6 +2017,10 @@ impl MemoryService {
                                 keyword_score: round4(ks),
                                 temporal_score: round4(ts),
                                 confidence_score: round4(cs),
+                                graph_rank: None,
+                                hybrid_rank: None,
+                                graph_score: None,
+                                hybrid_score: None,
                             })
                             .collect();
                     }
@@ -2023,6 +2094,10 @@ impl MemoryService {
                             keyword_score: round4(fs),
                             temporal_score: 0.0,
                             confidence_score: 0.0,
+                            graph_rank: None,
+                            hybrid_rank: None,
+                            graph_score: None,
+                            hybrid_score: None,
                         }
                     })
                     .collect();
@@ -2562,10 +2637,10 @@ impl MemoryService {
         // Normalize all string filters once at the boundary so that both the SQL
         // path and the fallback path treat "  alice  " and "" identically.
         let memory_type = options.memory_type.map(str::trim).filter(|s| !s.is_empty());
-        let session_id  = options.session_id.map(str::trim).filter(|s| !s.is_empty());
-        let trust_tier  = options.trust_tier.map(str::trim).filter(|s| !s.is_empty());
-        let subject_id  = options.subject_id.map(str::trim).filter(|s| !s.is_empty());
-        let cursor      = options.cursor.map(str::trim).filter(|s| !s.is_empty());
+        let session_id = options.session_id.map(str::trim).filter(|s| !s.is_empty());
+        let trust_tier = options.trust_tier.map(str::trim).filter(|s| !s.is_empty());
+        let subject_id = options.subject_id.map(str::trim).filter(|s| !s.is_empty());
+        let cursor = options.cursor.map(str::trim).filter(|s| !s.is_empty());
 
         if self.sql_store.is_some() {
             let sql = self.user_sql_store(user_id).await?;
@@ -3168,6 +3243,103 @@ mod tests {
     use super::*;
     use sqlx::mysql::MySqlPoolOptions;
 
+    fn fusion_memory(id: &str, score: f64) -> Memory {
+        Memory {
+            memory_id: id.into(),
+            user_id: "test".into(),
+            author_id: None,
+            subject_id: None,
+            memory_type: MemoryType::Semantic,
+            content: id.into(),
+            initial_confidence: 1.0,
+            embedding: None,
+            source_event_ids: vec![],
+            superseded_by: None,
+            is_active: true,
+            access_count: 0,
+            session_id: None,
+            observed_at: None,
+            created_at: None,
+            updated_at: None,
+            extra_metadata: None,
+            trust_tier: TrustTier::T1Verified,
+            retrieval_score: Some(score),
+        }
+    }
+
+    #[test]
+    fn fusion_uses_channel_ranks_independently_of_score_scale() {
+        let run = |scale| {
+            fuse_graph_hybrid(
+                vec![fusion_memory("graph", 100.0 * scale)],
+                vec![
+                    fusion_memory("hybrid_second", 0.2),
+                    fusion_memory("hybrid", 0.8),
+                ],
+                vec![],
+                3,
+            )
+        };
+        let (large, _) = run(10000.0);
+        let (small, _) = run(0.00001);
+        let ids = |ms: &[Memory]| ms.iter().map(|m| m.memory_id.clone()).collect::<Vec<_>>();
+        assert_eq!(ids(&large), ids(&small));
+        assert_eq!(ids(&large), vec!["graph", "hybrid", "hybrid_second"]);
+        assert_eq!(large[0].retrieval_score, large[1].retrieval_score);
+    }
+
+    #[test]
+    fn fusion_deduplicates_each_channel_and_rewards_overlap_once() {
+        let (memories, scores) = fuse_graph_hybrid(
+            vec![
+                fusion_memory("shared", 10.0),
+                fusion_memory("shared", 9.0),
+                fusion_memory("graph", 8.0),
+            ],
+            vec![
+                fusion_memory("hybrid", 0.9),
+                fusion_memory("shared", 0.8),
+                fusion_memory("shared", 0.7),
+            ],
+            vec![("shared".into(), 0.4, 0.3, 0.2, 0.1, 0.8)],
+            2,
+        );
+        assert_eq!(memories.len(), 2);
+        assert_eq!(memories[0].memory_id, "shared");
+        assert_eq!(scores[0].graph_rank, Some(1));
+        assert_eq!(scores[0].hybrid_rank, Some(2));
+        assert_eq!(scores[0].final_score, 1.0 / 61.0 + 1.0 / 62.0);
+        assert_eq!(scores[1].memory_id, "hybrid");
+        assert_eq!(scores[1].hybrid_rank, Some(1));
+        assert_eq!(scores[0].vector_score, 0.4);
+        for (index, (memory, score)) in memories.iter().zip(&scores).enumerate() {
+            assert_eq!(score.rank, index + 1);
+            assert_eq!(score.memory_id, memory.memory_id);
+            assert_eq!(memory.retrieval_score, Some(score.final_score));
+        }
+    }
+
+    #[test]
+    fn fusion_handles_empty_limit_and_nonfinite_scores_stably() {
+        let mut missing = fusion_memory("missing", 1.0);
+        missing.retrieval_score = None;
+        let channel = vec![
+            fusion_memory("nan", f64::NAN),
+            missing,
+            fusion_memory("finite", -1.0),
+        ];
+        let (results, scores) = fuse_graph_hybrid(vec![], channel.clone(), vec![], 3);
+        assert_eq!(
+            results
+                .iter()
+                .map(|m| m.memory_id.as_str())
+                .collect::<Vec<_>>(),
+            vec!["finite", "missing", "nan"]
+        );
+        assert_eq!(scores[2].hybrid_score, None);
+        assert!(fuse_graph_hybrid(vec![], channel, vec![], 0).0.is_empty());
+    }
+
     // ── normalize_opt_string ──────────────────────────────────────────────────
 
     #[test]
@@ -3211,8 +3383,8 @@ mod tests {
 
     #[test]
     fn retrieve_options_with_subject_id_empty_becomes_none() {
-        let opts = RetrieveOptions::from_session_scope(None, None)
-            .with_subject_id(Some("  ".to_string()));
+        let opts =
+            RetrieveOptions::from_session_scope(None, None).with_subject_id(Some("  ".to_string()));
         assert_eq!(opts.subject_id(), None);
     }
 

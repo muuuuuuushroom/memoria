@@ -1,0 +1,979 @@
+{
+  "baseline_routing_groups": {
+    "graph": {
+      "metrics": {
+        "all_rrf_equal": {
+          "complete_recall@20": 0.975,
+          "hit@1": 0.6,
+          "mrr@20": 0.7138789682539682,
+          "recall@20": 0.975
+        },
+        "all_rrf_hybrid2": {
+          "complete_recall@20": 0.975,
+          "hit@1": 0.475,
+          "mrr@20": 0.6366468253968254,
+          "recall@20": 0.975
+        },
+        "baseline": {
+          "complete_recall@20": 0.975,
+          "hit@1": 0.625,
+          "mrr@20": 0.7188296425796425,
+          "recall@20": 0.975
+        },
+        "conditional_rrf": {
+          "complete_recall@20": 0.975,
+          "hit@1": 0.625,
+          "mrr@20": 0.7188296425796425,
+          "recall@20": 0.975
+        }
+      },
+      "operational_questions": 40,
+      "paired_vs_baseline": {
+        "all_rrf_equal": {
+          "complete_recall@20": {
+            "count": 40,
+            "improved": 0,
+            "mean_delta": 0.0,
+            "regressed": 0,
+            "unchanged": 40
+          },
+          "hit@1": {
+            "count": 40,
+            "improved": 3,
+            "mean_delta": -0.025,
+            "regressed": 4,
+            "unchanged": 33
+          },
+          "mrr@20": {
+            "count": 40,
+            "improved": 9,
+            "mean_delta": -0.004950674325674327,
+            "regressed": 6,
+            "unchanged": 25
+          },
+          "recall@20": {
+            "count": 40,
+            "improved": 0,
+            "mean_delta": 0.0,
+            "regressed": 0,
+            "unchanged": 40
+          }
+        },
+        "all_rrf_hybrid2": {
+          "complete_recall@20": {
+            "count": 40,
+            "improved": 0,
+            "mean_delta": 0.0,
+            "regressed": 0,
+            "unchanged": 40
+          },
+          "hit@1": {
+            "count": 40,
+            "improved": 2,
+            "mean_delta": -0.15,
+            "regressed": 8,
+            "unchanged": 30
+          },
+          "mrr@20": {
+            "count": 40,
+            "improved": 8,
+            "mean_delta": -0.0821828171828172,
+            "regressed": 12,
+            "unchanged": 20
+          },
+          "recall@20": {
+            "count": 40,
+            "improved": 0,
+            "mean_delta": 0.0,
+            "regressed": 0,
+            "unchanged": 40
+          }
+        }
+      },
+      "quality_questions": 40
+    },
+    "graph+vector": {
+      "metrics": {
+        "all_rrf_equal": {
+          "complete_recall@20": 0.9820359281437125,
+          "hit@1": 0.8383233532934131,
+          "mrr@20": 0.9017203687862371,
+          "recall@20": 0.9910179640718563
+        },
+        "all_rrf_hybrid2": {
+          "complete_recall@20": 0.9461077844311377,
+          "hit@1": 0.7724550898203593,
+          "mrr@20": 0.8617764471057884,
+          "recall@20": 0.9758483033932136
+        },
+        "baseline": {
+          "complete_recall@20": 0.9461077844311377,
+          "hit@1": 0.8682634730538922,
+          "mrr@20": 0.9168983461648131,
+          "recall@20": 0.9758483033932136
+        },
+        "conditional_rrf": {
+          "complete_recall@20": 0.9820359281437125,
+          "hit@1": 0.8383233532934131,
+          "mrr@20": 0.902219370782245,
+          "recall@20": 0.9910179640718563
+        }
+      },
+      "operational_questions": 181,
+      "paired_vs_baseline": {
+        "all_rrf_equal": {
+          "complete_recall@20": {
+            "count": 167,
+            "improved": 7,
+            "mean_delta": 0.03592814371257485,
+            "regressed": 1,
+            "unchanged": 159
+          },
+          "hit@1": {
+            "count": 167,
+            "improved": 9,
+            "mean_delta": -0.029940119760479042,
+            "regressed": 14,
+            "unchanged": 144
+          },
+          "mrr@20": {
+            "count": 167,
+            "improved": 13,
+            "mean_delta": -0.015177977378576181,
+            "regressed": 17,
+            "unchanged": 137
+          },
+          "recall@20": {
+            "count": 167,
+            "improved": 7,
+            "mean_delta": 0.015169660678642715,
+            "regressed": 1,
+            "unchanged": 159
+          }
+        },
+        "all_rrf_hybrid2": {
+          "complete_recall@20": {
+            "count": 167,
+            "improved": 0,
+            "mean_delta": 0.0,
+            "regressed": 0,
+            "unchanged": 167
+          },
+          "hit@1": {
+            "count": 167,
+            "improved": 9,
+            "mean_delta": -0.09580838323353294,
+            "regressed": 25,
+            "unchanged": 133
+          },
+          "mrr@20": {
+            "count": 167,
+            "improved": 14,
+            "mean_delta": -0.05512189905902481,
+            "regressed": 30,
+            "unchanged": 123
+          },
+          "recall@20": {
+            "count": 167,
+            "improved": 0,
+            "mean_delta": 0.0,
+            "regressed": 0,
+            "unchanged": 167
+          }
+        }
+      },
+      "quality_questions": 167
+    },
+    "hybrid": {
+      "metrics": {
+        "all_rrf_equal": {
+          "complete_recall@20": 0.9049429657794676,
+          "hit@1": 0.596958174904943,
+          "mrr@20": 0.723435339647567,
+          "recall@20": 0.9550063371356147
+        },
+        "all_rrf_hybrid2": {
+          "complete_recall@20": 0.9049429657794676,
+          "hit@1": 0.596958174904943,
+          "mrr@20": 0.7235032375291531,
+          "recall@20": 0.9550063371356147
+        },
+        "baseline": {
+          "complete_recall@20": 0.9049429657794676,
+          "hit@1": 0.596958174904943,
+          "mrr@20": 0.7226748833738027,
+          "recall@20": 0.9550063371356147
+        },
+        "conditional_rrf": {
+          "complete_recall@20": 0.9049429657794676,
+          "hit@1": 0.5931558935361216,
+          "mrr@20": 0.7206379469262199,
+          "recall@20": 0.9550063371356147
+        }
+      },
+      "operational_questions": 279,
+      "paired_vs_baseline": {
+        "all_rrf_equal": {
+          "complete_recall@20": {
+            "count": 263,
+            "improved": 0,
+            "mean_delta": 0.0,
+            "regressed": 0,
+            "unchanged": 263
+          },
+          "hit@1": {
+            "count": 263,
+            "improved": 0,
+            "mean_delta": 0.0,
+            "regressed": 0,
+            "unchanged": 263
+          },
+          "mrr@20": {
+            "count": 263,
+            "improved": 2,
+            "mean_delta": 0.0007604562737642587,
+            "regressed": 0,
+            "unchanged": 261
+          },
+          "recall@20": {
+            "count": 263,
+            "improved": 0,
+            "mean_delta": 0.0,
+            "regressed": 0,
+            "unchanged": 263
+          }
+        },
+        "all_rrf_hybrid2": {
+          "complete_recall@20": {
+            "count": 263,
+            "improved": 0,
+            "mean_delta": 0.0,
+            "regressed": 0,
+            "unchanged": 263
+          },
+          "hit@1": {
+            "count": 263,
+            "improved": 0,
+            "mean_delta": 0.0,
+            "regressed": 0,
+            "unchanged": 263
+          },
+          "mrr@20": {
+            "count": 263,
+            "improved": 3,
+            "mean_delta": 0.0008283541553503531,
+            "regressed": 0,
+            "unchanged": 260
+          },
+          "recall@20": {
+            "count": 263,
+            "improved": 0,
+            "mean_delta": 0.0,
+            "regressed": 0,
+            "unchanged": 263
+          }
+        }
+      },
+      "quality_questions": 263
+    }
+  },
+  "bootstrap": {
+    "confidence": 0.95,
+    "method": "paired question resampling of variant-minus-baseline deltas; percentile CI",
+    "multiple_comparison_correction": false,
+    "resamples": 5000,
+    "seed": 42
+  },
+  "counterfactual_pure_hybrid": {
+    "counterfactual_vs_baseline": {
+      "complete_recall@20": {
+        "ci_assessment": "includes_zero",
+        "count": 470,
+        "improved": 0,
+        "mean_delta": 0.0,
+        "paired_bootstrap_95_ci": [
+          0.0,
+          0.0
+        ],
+        "regressed": 0,
+        "unchanged": 470
+      },
+      "hit@1": {
+        "ci_assessment": "regression",
+        "count": 470,
+        "improved": 9,
+        "mean_delta": -0.07446808510638298,
+        "paired_bootstrap_95_ci": [
+          -0.10425531914893617,
+          -0.04468085106382979
+        ],
+        "regressed": 44,
+        "unchanged": 417
+      },
+      "mrr@20": {
+        "ci_assessment": "regression",
+        "count": 470,
+        "improved": 18,
+        "mean_delta": -0.05435932271038654,
+        "paired_bootstrap_95_ci": [
+          -0.07436276961808877,
+          -0.035251306613008744
+        ],
+        "regressed": 55,
+        "unchanged": 397
+      },
+      "recall@20": {
+        "ci_assessment": "includes_zero",
+        "count": 470,
+        "improved": 0,
+        "mean_delta": 0.0,
+        "paired_bootstrap_95_ci": [
+          0.0,
+          0.0
+        ],
+        "regressed": 0,
+        "unchanged": 470
+      }
+    },
+    "latency_ms": null,
+    "method": "Reorder normalized_results by verified hybrid_rank; reuse score_record. No API run or latency inference.",
+    "metrics": {
+      "complete_recall@20": 0.925531914893617,
+      "hit@1": 0.6212765957446809,
+      "mrr@20": 0.7369996216300807,
+      "recall@20": 0.964113475177305
+    },
+    "offline": true,
+    "operational_questions": 500,
+    "quality_questions": 470,
+    "selection_math": {
+      "consequence": "When hybrid has 20 unique candidates, hybrid2's final set is entirely hybrid; graph can only rerank that set, not supplement recall.",
+      "highest_graph_exclusive_score": 0.01639344262295082,
+      "lowest_hybrid_exclusive_score": 0.025,
+      "rrf_k": 60,
+      "top_k_per_channel": 20
+    },
+    "source_variant": "all_rrf_hybrid2",
+    "status": "verified_full500",
+    "verified_operational_questions": 500,
+    "verified_quality_questions": 470,
+    "weighted_rerank_vs_counterfactual": {
+      "complete_recall@20": {
+        "ci_assessment": "includes_zero",
+        "count": 470,
+        "improved": 0,
+        "mean_delta": 0.0,
+        "paired_bootstrap_95_ci": [
+          0.0,
+          0.0
+        ],
+        "regressed": 0,
+        "unchanged": 470
+      },
+      "hit@1": {
+        "ci_assessment": "improvement",
+        "count": 470,
+        "improved": 14,
+        "mean_delta": 0.027659574468085105,
+        "paired_bootstrap_95_ci": [
+          0.01276595744680851,
+          0.04468085106382979
+        ],
+        "regressed": 1,
+        "unchanged": 455
+      },
+      "mrr@20": {
+        "ci_assessment": "improvement",
+        "count": 470,
+        "improved": 54,
+        "mean_delta": 0.028242699971423375,
+        "paired_bootstrap_95_ci": [
+          0.018740613553113555,
+          0.038522099797365726
+        ],
+        "regressed": 3,
+        "unchanged": 413
+      },
+      "recall@20": {
+        "ci_assessment": "includes_zero",
+        "count": 470,
+        "improved": 0,
+        "mean_delta": 0.0,
+        "paired_bootstrap_95_ci": [
+          0.0,
+          0.0
+        ],
+        "regressed": 0,
+        "unchanged": 470
+      }
+    }
+  },
+  "dataset": "LongMemEval-S",
+  "evaluator": {
+    "path": "/Users/muuushroom/gitrepos/moi-benchmark/memoria/scripts/longmemeval/evaluate_retrieval.py",
+    "sha256": "e339d965b1f7aaec69a814214d87afd05cff1ac9e891d54fc6ef183d19df78f3"
+  },
+  "latency_caveat": "Conditional-RRF queries were cold in the query cache; its latency is not a fair comparison. Both new runs were prewarmed; compare their warm latencies descriptively. Sequential runs are not randomized latency trials.",
+  "mrr_definition": "Mean reciprocal rank of the first gold session within the first 20 results; zero if absent.",
+  "operational_scope": "500 questions including 30 abstention questions",
+  "overall": {
+    "all_rrf_equal": {
+      "complete_recall@20": 0.9382978723404255,
+      "hit@1": 0.6829787234042554,
+      "latency_ms": {
+        "p50": 708.8515,
+        "p95": 2749.6665499999986
+      },
+      "mrr@20": 0.785970116265469,
+      "operational_questions": 500,
+      "quality_questions": 470,
+      "recall@20": 0.9695035460992908,
+      "routing_counts": {
+        "graph+vector": 221,
+        "hybrid": 279
+      }
+    },
+    "all_rrf_hybrid2": {
+      "complete_recall@20": 0.925531914893617,
+      "hit@1": 0.648936170212766,
+      "latency_ms": {
+        "p50": 512.0905,
+        "p95": 1657.270199999999
+      },
+      "mrr@20": 0.7652423216015041,
+      "operational_questions": 500,
+      "quality_questions": 470,
+      "recall@20": 0.964113475177305,
+      "routing_counts": {
+        "graph+vector": 221,
+        "hybrid": 279
+      }
+    },
+    "baseline": {
+      "complete_recall@20": 0.925531914893617,
+      "hit@1": 0.6957446808510638,
+      "latency_ms": {
+        "p50": 553.1985,
+        "p95": 1557.843099999999
+      },
+      "mrr@20": 0.7913589443404673,
+      "operational_questions": 500,
+      "quality_questions": 470,
+      "recall@20": 0.964113475177305,
+      "routing_counts": {
+        "graph": 40,
+        "graph+vector": 181,
+        "hybrid": 279
+      }
+    },
+    "conditional_rrf": {
+      "complete_recall@20": 0.9382978723404255,
+      "hit@1": 0.6829787234042554,
+      "latency_ms": {
+        "p50": 1185.4050000000002,
+        "p95": 2870.1339999999996
+      },
+      "mrr@20": 0.7850034056710988,
+      "operational_questions": 500,
+      "quality_questions": 470,
+      "recall@20": 0.9695035460992908,
+      "routing_counts": {
+        "fulltext": 1,
+        "graph": 40,
+        "graph+vector": 181,
+        "hybrid": 278
+      }
+    }
+  },
+  "paired_vs_baseline": {
+    "all_rrf_equal": {
+      "complete_recall@20": {
+        "ci_assessment": "improvement",
+        "count": 470,
+        "improved": 7,
+        "mean_delta": 0.01276595744680851,
+        "paired_bootstrap_95_ci": [
+          0.002127659574468085,
+          0.02553191489361702
+        ],
+        "regressed": 1,
+        "unchanged": 462
+      },
+      "hit@1": {
+        "ci_assessment": "includes_zero",
+        "count": 470,
+        "improved": 12,
+        "mean_delta": -0.01276595744680851,
+        "paired_bootstrap_95_ci": [
+          -0.036170212765957444,
+          0.010638297872340425
+        ],
+        "regressed": 18,
+        "unchanged": 440
+      },
+      "mrr@20": {
+        "ci_assessment": "includes_zero",
+        "count": 470,
+        "improved": 24,
+        "mean_delta": -0.005388828074998288,
+        "paired_bootstrap_95_ci": [
+          -0.018124305954093187,
+          0.007205347548432653
+        ],
+        "regressed": 23,
+        "unchanged": 423
+      },
+      "recall@20": {
+        "ci_assessment": "improvement",
+        "count": 470,
+        "improved": 7,
+        "mean_delta": 0.005390070921985815,
+        "paired_bootstrap_95_ci": [
+          0.0004255319148936169,
+          0.011063829787234043
+        ],
+        "regressed": 1,
+        "unchanged": 462
+      }
+    },
+    "all_rrf_hybrid2": {
+      "complete_recall@20": {
+        "ci_assessment": "includes_zero",
+        "count": 470,
+        "improved": 0,
+        "mean_delta": 0.0,
+        "paired_bootstrap_95_ci": [
+          0.0,
+          0.0
+        ],
+        "regressed": 0,
+        "unchanged": 470
+      },
+      "hit@1": {
+        "ci_assessment": "regression",
+        "count": 470,
+        "improved": 11,
+        "mean_delta": -0.04680851063829787,
+        "paired_bootstrap_95_ci": [
+          -0.07446808510638298,
+          -0.019148936170212766
+        ],
+        "regressed": 33,
+        "unchanged": 426
+      },
+      "mrr@20": {
+        "ci_assessment": "regression",
+        "count": 470,
+        "improved": 25,
+        "mean_delta": -0.026116622738963164,
+        "paired_bootstrap_95_ci": [
+          -0.04247197948328267,
+          -0.01041772552211383
+        ],
+        "regressed": 42,
+        "unchanged": 403
+      },
+      "recall@20": {
+        "ci_assessment": "includes_zero",
+        "count": 470,
+        "improved": 0,
+        "mean_delta": 0.0,
+        "paired_bootstrap_95_ci": [
+          0.0,
+          0.0
+        ],
+        "regressed": 0,
+        "unchanged": 470
+      }
+    }
+  },
+  "quality_scope": "470 non-abstention questions; session evidence retrieval, not answer accuracy",
+  "routing_caveat": "Groups use the baseline route for each aligned question; requesting both channels does not ensure both provide candidates.",
+  "source_provenance": {
+    "all_rrf_equal": {
+      "directory": "/Users/muuushroom/gitrepos/moi-benchmark/memoria/runs/fusion-lme-bgem3-full500-v2/retrieval/all-rrf-equal-top20-full500-v1",
+      "execution_provenance": {
+        "binary_sha256": "779ee922203c23d3ea3d81d7073ccdac30163f5d11753597fbe0dbae348e205d",
+        "build_provenance": {
+          "all_rrf_patch": "all-rrf-service.patch",
+          "all_rrf_patch_sha256": "fde1e8335a837aed67e6c0090b8a635be8b25868f17cb1076419e6643bd67120",
+          "backfill_patch": "full-batch-backfill-v2.patch",
+          "backfill_patch_sha256": "f0d6525394223bf79ec73ac26ea8427d5a8928e558524b0cb8563f66f72456ac",
+          "binary": "runtime/bin/all-rrf-memoria",
+          "binary_sha256": "779ee922203c23d3ea3d81d7073ccdac30163f5d11753597fbe0dbae348e205d",
+          "build_seconds": 44.85,
+          "checkout": "/Users/muuushroom/gitrepos/memoria-fusion-baseline/memoria",
+          "command": "CARGO_TARGET_DIR=/Users/muuushroom/gitrepos/memoria/memoria/target cargo build -p memoria-cli --bin memoria",
+          "common_patch": "full-common.patch",
+          "common_patch_sha256": "de58ff135dbaab3dd9d2bc05a5b562aa8e3cde1ca4738d551447fa93970c09df",
+          "compiler": "rustc 1.98.0 (88d9e12ae 2026-08-18)",
+          "configuration": {
+            "RRF_ALL_CHANNELS": "Defaults false. true/1/yes enables all-channel routing.",
+            "RRF_GRAPH_WEIGHT": "Defaults1; finite positive; ignored when experimental routing disabled.",
+            "RRF_HYBRID_WEIGHT": "Defaults1; finite positive; set2 for hybrid2:graph1 experiment.",
+            "k": 60
+          },
+          "exact_test_command": "CARGO_TARGET_DIR=/Users/muuushroom/gitrepos/memoria/memoria/target cargo test -p memoria-service --lib fusion_ -- --nocapture",
+          "execution_script": "benchmarks/fusion/run_all_rrf_experiment.py",
+          "patch_note": "all-rrf-service.patch is the full service delta from base6247235, including original RRF changes. Do not additionally apply full-rrf.patch.",
+          "preserved_binary_sha256": {
+            "baseline": "5464330acbaff0608cb6a54d8b30c924b9002dc76ea130914ea6bd8bb29d414b",
+            "rrf": "feb133991f8e71181ae441387de22f774a926db378304885907141a8bd12e5ac"
+          },
+          "profile": "dev",
+          "routing": "Eligible graph requests always followed by hybrid; same top_k channel depth. Graph empty => hybrid-only RRF, hybrid empty => graph-only RRF, both empty => fulltext fallback. Single-channel rank order preserved. All-channel requests do not guarantee both channels have candidates. Existing filter guards and embedding availability still apply.",
+          "service_rs_sha256": "dba691777d7c43835c9c6cc19a1d79616ba6cda554ccf61c5432eecf44d98bfb",
+          "source_commit": "6247235e27bc62898b122473dafae084bea61c80",
+          "test_manifest": [
+            "tests::fusion_uses_channel_ranks_independently_of_score_scale",
+            "tests::fusion_deduplicates_each_channel_and_rewards_overlap_once",
+            "tests::fusion_handles_empty_limit_and_nonfinite_scores_stably",
+            "tests::fusion_all_policy_keeps_hybrid_competing_when_graph_fills_top_k",
+            "tests::fusion_all_single_channel_preserves_order_and_graph_when_hybrid_empty",
+            "tests::fusion_all_weighted_cross_over_and_overlap_are_explicit",
+            "tests::fusion_all_policy_defaults_and_invalid_weights_are_isolated"
+          ],
+          "validation": "Build and rustfmt/diffcheck passed; parent validator reports seven focused tests PASS (65 filtered). Script py_compile and paused-validation/resume/500-success acceptance/embedding rejection simulations PASS. No services launched.",
+          "verbose_explain": {
+            "channel_weight": {
+              "graph": 1,
+              "hybrid": "1 or 2"
+            },
+            "fusion_policy": "all_channels_rrf"
+          }
+        },
+        "channel_weight": {
+          "graph": 1.0,
+          "hybrid": 1.0
+        },
+        "dataset_sha256": "d6f21ea9d60a0d56f34a05b609c79c88a451d2ae03597821ea3d5a9678c3a442",
+        "embedding_proxy": "http://127.0.0.1:18200/v1",
+        "graph_candidate_depth": 20,
+        "graph_checkpoint_sha256": "be0e3624e791571d1c8a5857c28e16d82b96dff68ff57f3e18d621bc4f271268",
+        "hybrid_candidate_depth": 20,
+        "policy": "all_channels_rrf",
+        "reader_or_judge": false,
+        "routing_limit": "Requests both channels; does not ensure both contain candidates.",
+        "rrf_k": 60,
+        "top_k": 20,
+        "workers": 1
+      },
+      "file_sha256": {
+        "execution-provenance.json": "b3fcb60ca9cc6ce5fe03da4e2f13edc1a3e5836d2125ea7c8ed4b7401cba5ac2",
+        "manifest.json": "7beb9a881a548c06f35edfbe38db1b9b3806bcc0b79b6759564a187f8c1b2dda",
+        "metrics.json": "fef8b60e4eae4c4b1ad9f1a2ee938a897bfa4d6e38186595238d272c727a519e",
+        "retrieval.jsonl": "351002f8f9a71bc3b9b6ee9836d976ab6d9b1d57bb1c8645bbaa0c270108c417",
+        "summary.json": "823b8157aa5cb037de5ae151b2877b79aa9b6ed88167bbc299faeebce8aba7e4"
+      }
+    },
+    "all_rrf_hybrid2": {
+      "directory": "/Users/muuushroom/gitrepos/moi-benchmark/memoria/runs/fusion-lme-bgem3-full500-v2/retrieval/all-rrf-hybrid2-top20-full500-v1",
+      "execution_provenance": {
+        "binary_sha256": "779ee922203c23d3ea3d81d7073ccdac30163f5d11753597fbe0dbae348e205d",
+        "build_provenance": {
+          "all_rrf_patch": "all-rrf-service.patch",
+          "all_rrf_patch_sha256": "fde1e8335a837aed67e6c0090b8a635be8b25868f17cb1076419e6643bd67120",
+          "backfill_patch": "full-batch-backfill-v2.patch",
+          "backfill_patch_sha256": "f0d6525394223bf79ec73ac26ea8427d5a8928e558524b0cb8563f66f72456ac",
+          "binary": "runtime/bin/all-rrf-memoria",
+          "binary_sha256": "779ee922203c23d3ea3d81d7073ccdac30163f5d11753597fbe0dbae348e205d",
+          "build_seconds": 44.85,
+          "checkout": "/Users/muuushroom/gitrepos/memoria-fusion-baseline/memoria",
+          "command": "CARGO_TARGET_DIR=/Users/muuushroom/gitrepos/memoria/memoria/target cargo build -p memoria-cli --bin memoria",
+          "common_patch": "full-common.patch",
+          "common_patch_sha256": "de58ff135dbaab3dd9d2bc05a5b562aa8e3cde1ca4738d551447fa93970c09df",
+          "compiler": "rustc 1.98.0 (88d9e12ae 2026-08-18)",
+          "configuration": {
+            "RRF_ALL_CHANNELS": "Defaults false. true/1/yes enables all-channel routing.",
+            "RRF_GRAPH_WEIGHT": "Defaults1; finite positive; ignored when experimental routing disabled.",
+            "RRF_HYBRID_WEIGHT": "Defaults1; finite positive; set2 for hybrid2:graph1 experiment.",
+            "k": 60
+          },
+          "exact_test_command": "CARGO_TARGET_DIR=/Users/muuushroom/gitrepos/memoria/memoria/target cargo test -p memoria-service --lib fusion_ -- --nocapture",
+          "execution_script": "benchmarks/fusion/run_all_rrf_experiment.py",
+          "patch_note": "all-rrf-service.patch is the full service delta from base6247235, including original RRF changes. Do not additionally apply full-rrf.patch.",
+          "preserved_binary_sha256": {
+            "baseline": "5464330acbaff0608cb6a54d8b30c924b9002dc76ea130914ea6bd8bb29d414b",
+            "rrf": "feb133991f8e71181ae441387de22f774a926db378304885907141a8bd12e5ac"
+          },
+          "profile": "dev",
+          "routing": "Eligible graph requests always followed by hybrid; same top_k channel depth. Graph empty => hybrid-only RRF, hybrid empty => graph-only RRF, both empty => fulltext fallback. Single-channel rank order preserved. All-channel requests do not guarantee both channels have candidates. Existing filter guards and embedding availability still apply.",
+          "service_rs_sha256": "dba691777d7c43835c9c6cc19a1d79616ba6cda554ccf61c5432eecf44d98bfb",
+          "source_commit": "6247235e27bc62898b122473dafae084bea61c80",
+          "test_manifest": [
+            "tests::fusion_uses_channel_ranks_independently_of_score_scale",
+            "tests::fusion_deduplicates_each_channel_and_rewards_overlap_once",
+            "tests::fusion_handles_empty_limit_and_nonfinite_scores_stably",
+            "tests::fusion_all_policy_keeps_hybrid_competing_when_graph_fills_top_k",
+            "tests::fusion_all_single_channel_preserves_order_and_graph_when_hybrid_empty",
+            "tests::fusion_all_weighted_cross_over_and_overlap_are_explicit",
+            "tests::fusion_all_policy_defaults_and_invalid_weights_are_isolated"
+          ],
+          "validation": "Build and rustfmt/diffcheck passed; parent validator reports seven focused tests PASS (65 filtered). Script py_compile and paused-validation/resume/500-success acceptance/embedding rejection simulations PASS. No services launched.",
+          "verbose_explain": {
+            "channel_weight": {
+              "graph": 1,
+              "hybrid": "1 or 2"
+            },
+            "fusion_policy": "all_channels_rrf"
+          }
+        },
+        "channel_weight": {
+          "graph": 1.0,
+          "hybrid": 2.0
+        },
+        "dataset_sha256": "d6f21ea9d60a0d56f34a05b609c79c88a451d2ae03597821ea3d5a9678c3a442",
+        "embedding_proxy": "http://127.0.0.1:18200/v1",
+        "graph_candidate_depth": 20,
+        "graph_checkpoint_sha256": "be0e3624e791571d1c8a5857c28e16d82b96dff68ff57f3e18d621bc4f271268",
+        "hybrid_candidate_depth": 20,
+        "policy": "all_channels_rrf",
+        "reader_or_judge": false,
+        "routing_limit": "Requests both channels; does not ensure both contain candidates.",
+        "rrf_k": 60,
+        "top_k": 20,
+        "workers": 1
+      },
+      "file_sha256": {
+        "execution-provenance.json": "5648d0f443bcce58a7b9607ba73555f46b533a5babdf3ffbfe9a24e00efdc1af",
+        "manifest.json": "174d1e98255909e443eead53587be2a43e18114ee12f50d87bed75c014d1e9fe",
+        "metrics.json": "674f5613bc510547a113e792ba5041b069a7dddb0e67bae35bed9fafc121737a",
+        "retrieval.jsonl": "32486642e14fa7b46bd4d42973aec0371fcfcec1e8f79bc0c6664fe99145479c",
+        "summary.json": "1ffd1d95fde5b217a1d0f33355fecce7ffd58ac7a48b8d9f4b4395e52e193003"
+      }
+    },
+    "baseline": {
+      "directory": "/Users/muuushroom/gitrepos/moi-benchmark/memoria/runs/fusion-lme-bgem3-full500-v2/retrieval/baseline-top20-full500-v1",
+      "execution_provenance": {
+        "at": "2026-10-09T09:56:51Z",
+        "background_entity_extraction": false,
+        "batch_backfill_build": {
+          "backfill_sha256": "186059608a5e0a75ea3a106e6dcd5441af8d3bcffb7d22cb5341595ac8ea92ea",
+          "binary_sha256": {
+            "baseline": "5464330acbaff0608cb6a54d8b30c924b9002dc76ea130914ea6bd8bb29d414b",
+            "rrf": "feb133991f8e71181ae441387de22f774a926db378304885907141a8bd12e5ac"
+          },
+          "build_command": "CARGO_TARGET_DIR=/Users/muuushroom/gitrepos/memoria/memoria/target cargo build -p memoria-cli --bin memoria",
+          "defect": "Long data URI entity from NER exceeded mem_entities VARCHAR limits; INSERT IGNORE truncated it to 200 chars, then strict ID map lookup failed the whole backfill request.",
+          "fix": "Filter name/display by chars().count() <= 200 and entity_type <= 20 before dedupe/batch upsert. Invalid entities are skipped with warning; valid entities and links continue. No truncation or synthetic entities.",
+          "limitation": "Existing graph-node cap and no cross-batch transaction remain.",
+          "new_tests": [
+            "long_data_uri_entity_does_not_discard_valid_memory_links",
+            "entity_character_limits_keep_unicode_boundaries_without_truncation",
+            "invalid_first_type_does_not_hide_later_storable_duplicate"
+          ],
+          "patch": "full-batch-backfill-v2.patch",
+          "patch_sha256": "f0d6525394223bf79ec73ac26ea8427d5a8928e558524b0cb8563f66f72456ac",
+          "preserved_pre_v2": {
+            "baseline": "297b794a01abf3b36f90f9eb1603c5d346b8008e46d6707117b97c377bed6133",
+            "rrf": "15726e8bd1234ee64dc3b7cf0074b214bd3de462ce76d3299744c01de6d387f2"
+          },
+          "source_commit": "6247235e27bc62898b122473dafae084bea61c80",
+          "tests": "cargo test -p memoria-storage --lib graph::backfill::tests:: -- --nocapture",
+          "validation": [
+            "Both binaries rebuilt from same v2 backfill; cargo builds passed; diff check passed; API/DB not touched."
+          ]
+        },
+        "binary_sha256": "5464330acbaff0608cb6a54d8b30c924b9002dc76ea130914ea6bd8bb29d414b",
+        "build": {
+          "binaries": [
+            {
+              "bytes": 108868408,
+              "patches": [
+                "full-common.patch"
+              ],
+              "path": "runtime/bin/full-baseline-memoria",
+              "service_rs_sha256": "e34d85e68cb073d96c1a2306103ee75ea3f2504cf13cd037a8b1aba63ba3e904",
+              "sha256": "297b794a01abf3b36f90f9eb1603c5d346b8008e46d6707117b97c377bed6133"
+            },
+            {
+              "bytes": 109050680,
+              "patches": [
+                "full-common.patch",
+                "full-rrf.patch"
+              ],
+              "path": "runtime/bin/full-rrf-memoria",
+              "service_rs_sha256": "91cf3304a7ccba586ccb101be135e7f766788ff10987a0598bedf3dc6d09befc",
+              "sha256": "15726e8bd1234ee64dc3b7cf0074b214bd3de462ce76d3299744c01de6d387f2"
+            }
+          ],
+          "cargo": "cargo 1.98.0 (797e8a9bc 2026-08-05)",
+          "cargo_lock_sha256": "adb2a1c4ddb6172bd1ee1f24a8506a09ebee9a1b4bf965146260f4fdf18b177e",
+          "command": "CARGO_TARGET_DIR=/Users/muuushroom/gitrepos/memoria/memoria/target cargo build -p memoria-cli --bin memoria",
+          "common_patch": {
+            "behavior": "Retrieve and search clamp top_k to 1..200; sensitivity filter defaults enabled and disables when MEMORIA_SENSITIVITY_FILTER_ENABLED is 0, false or no, ignoring surrounding whitespace and ASCII case.",
+            "path": "build-provenance/full-common.patch",
+            "sha256": "de58ff135dbaab3dd9d2bc05a5b562aa8e3cde1ca4738d551447fa93970c09df",
+            "upstream_patches": [
+              {
+                "path": "/Users/muuushroom/gitrepos/moi-benchmark/memoria/scripts/locomo/patches/memoria-top200-limit.patch",
+                "sha256": "978b090055924cdcced9ecd2cfcb25c1f4ad64b1f048ce43653dc73c1c479651"
+              },
+              {
+                "path": "/Users/muuushroom/gitrepos/moi-benchmark/memoria/scripts/locomo/patches/memoria-sensitivity-filter-toggle.patch",
+                "sha256": "a668ae33c3c5e4fd83f642c75003e1d299f81c039ca300bb4c89996bf7aca128"
+              }
+            ]
+          },
+          "common_source_sha256": {
+            "memoria/crates/memoria-api/src/routes/memory.rs": "644d05077324156bbfca12202e670d18b71cb5309fece173fcb1ba491189c0b9",
+            "memoria/crates/memoria-core/src/sensitivity.rs": "ec9a524bc6c15dd7f9731837976189368ff4afb4d7d8b7cf64be42b049ab4128"
+          },
+          "generated_at_utc": "2026-10-09T03:20:59Z",
+          "isolated_checkout": "/Users/muuushroom/gitrepos/memoria-fusion-baseline",
+          "profile": "dev (unoptimized + debuginfo)",
+          "rrf_patch": {
+            "path": "build-provenance/full-rrf.patch",
+            "sha256": "f9105f48e996cf2b692e2d091edbad90b3e79c5d598caaf882788066636a34e3",
+            "source": "Captured uncommitted primary memoria/crates/memoria-service/src/service.rs diff; applied mechanically after baseline build."
+          },
+          "runtime_actions": "No API server started or stopped; no DB or credential operations.",
+          "rustc": "rustc 1.98.0 (88d9e12ae 2026-08-18)",
+          "source_commit": "6247235e27bc62898b122473dafae084bea61c80",
+          "target": "aarch64-apple-darwin",
+          "validation": [
+            "Both cargo builds passed.",
+            "git diff --check passed.",
+            "Common source diff unchanged between builds.",
+            "Applied RRF diff exactly matches captured primary diff.",
+            "git apply --reverse --check passed for both original compatibility patches.",
+            "Both binaries report memoria 0.5.2 and are Mach-O arm64 executables."
+          ],
+          "working_directory": "/Users/muuushroom/gitrepos/memoria-fusion-baseline/memoria"
+        },
+        "embedding_dim": 1024,
+        "embedding_model": "bge-m3",
+        "embedding_proxy": "http://127.0.0.1:18200/v1",
+        "governance": false,
+        "graph_preparation": "same frozen graph for both variants; default backfill API caps each user at 500 active memories",
+        "reader_or_judge": false,
+        "variant": "baseline",
+        "workers": 1
+      },
+      "file_sha256": {
+        "execution-provenance.json": "c37bbd3b47ffd76fda8271f14f250f50921adff4b08c4dea3f0f33d14ed76f5a",
+        "manifest.json": "d6ed022b6170b8df022fc2b327673c7c7419cad6bbae2f8e78c0f364ea93a2f5",
+        "metrics.json": "5aff6042b6c4a5097489a2f6e567dbdec2a31ee10506af26229eaeac2f0d7973",
+        "retrieval.jsonl": "e55c89bf3e726b04e9d8367cd3b52c968378467fad781c535e42d6e4f6fd37f7",
+        "summary.json": "2ccff7233f920cafe3a049b56efb9ae8c06528f5fc83b40e9c4121b999b3c434"
+      }
+    },
+    "conditional_rrf": {
+      "directory": "/Users/muuushroom/gitrepos/moi-benchmark/memoria/runs/fusion-lme-bgem3-full500-v2/retrieval/rrf-top20-full500-v1",
+      "execution_provenance": {
+        "at": "2026-10-09T09:18:03Z",
+        "background_entity_extraction": false,
+        "batch_backfill_build": {
+          "backfill_sha256": "186059608a5e0a75ea3a106e6dcd5441af8d3bcffb7d22cb5341595ac8ea92ea",
+          "binary_sha256": {
+            "baseline": "5464330acbaff0608cb6a54d8b30c924b9002dc76ea130914ea6bd8bb29d414b",
+            "rrf": "feb133991f8e71181ae441387de22f774a926db378304885907141a8bd12e5ac"
+          },
+          "build_command": "CARGO_TARGET_DIR=/Users/muuushroom/gitrepos/memoria/memoria/target cargo build -p memoria-cli --bin memoria",
+          "defect": "Long data URI entity from NER exceeded mem_entities VARCHAR limits; INSERT IGNORE truncated it to 200 chars, then strict ID map lookup failed the whole backfill request.",
+          "fix": "Filter name/display by chars().count() <= 200 and entity_type <= 20 before dedupe/batch upsert. Invalid entities are skipped with warning; valid entities and links continue. No truncation or synthetic entities.",
+          "limitation": "Existing graph-node cap and no cross-batch transaction remain.",
+          "new_tests": [
+            "long_data_uri_entity_does_not_discard_valid_memory_links",
+            "entity_character_limits_keep_unicode_boundaries_without_truncation",
+            "invalid_first_type_does_not_hide_later_storable_duplicate"
+          ],
+          "patch": "full-batch-backfill-v2.patch",
+          "patch_sha256": "f0d6525394223bf79ec73ac26ea8427d5a8928e558524b0cb8563f66f72456ac",
+          "preserved_pre_v2": {
+            "baseline": "297b794a01abf3b36f90f9eb1603c5d346b8008e46d6707117b97c377bed6133",
+            "rrf": "15726e8bd1234ee64dc3b7cf0074b214bd3de462ce76d3299744c01de6d387f2"
+          },
+          "source_commit": "6247235e27bc62898b122473dafae084bea61c80",
+          "tests": "cargo test -p memoria-storage --lib graph::backfill::tests:: -- --nocapture",
+          "validation": [
+            "Both binaries rebuilt from same v2 backfill; cargo builds passed; diff check passed; API/DB not touched."
+          ]
+        },
+        "binary_sha256": "feb133991f8e71181ae441387de22f774a926db378304885907141a8bd12e5ac",
+        "build": {
+          "binaries": [
+            {
+              "bytes": 108868408,
+              "patches": [
+                "full-common.patch"
+              ],
+              "path": "runtime/bin/full-baseline-memoria",
+              "service_rs_sha256": "e34d85e68cb073d96c1a2306103ee75ea3f2504cf13cd037a8b1aba63ba3e904",
+              "sha256": "297b794a01abf3b36f90f9eb1603c5d346b8008e46d6707117b97c377bed6133"
+            },
+            {
+              "bytes": 109050680,
+              "patches": [
+                "full-common.patch",
+                "full-rrf.patch"
+              ],
+              "path": "runtime/bin/full-rrf-memoria",
+              "service_rs_sha256": "91cf3304a7ccba586ccb101be135e7f766788ff10987a0598bedf3dc6d09befc",
+              "sha256": "15726e8bd1234ee64dc3b7cf0074b214bd3de462ce76d3299744c01de6d387f2"
+            }
+          ],
+          "cargo": "cargo 1.98.0 (797e8a9bc 2026-08-05)",
+          "cargo_lock_sha256": "adb2a1c4ddb6172bd1ee1f24a8506a09ebee9a1b4bf965146260f4fdf18b177e",
+          "command": "CARGO_TARGET_DIR=/Users/muuushroom/gitrepos/memoria/memoria/target cargo build -p memoria-cli --bin memoria",
+          "common_patch": {
+            "behavior": "Retrieve and search clamp top_k to 1..200; sensitivity filter defaults enabled and disables when MEMORIA_SENSITIVITY_FILTER_ENABLED is 0, false or no, ignoring surrounding whitespace and ASCII case.",
+            "path": "build-provenance/full-common.patch",
+            "sha256": "de58ff135dbaab3dd9d2bc05a5b562aa8e3cde1ca4738d551447fa93970c09df",
+            "upstream_patches": [
+              {
+                "path": "/Users/muuushroom/gitrepos/moi-benchmark/memoria/scripts/locomo/patches/memoria-top200-limit.patch",
+                "sha256": "978b090055924cdcced9ecd2cfcb25c1f4ad64b1f048ce43653dc73c1c479651"
+              },
+              {
+                "path": "/Users/muuushroom/gitrepos/moi-benchmark/memoria/scripts/locomo/patches/memoria-sensitivity-filter-toggle.patch",
+                "sha256": "a668ae33c3c5e4fd83f642c75003e1d299f81c039ca300bb4c89996bf7aca128"
+              }
+            ]
+          },
+          "common_source_sha256": {
+            "memoria/crates/memoria-api/src/routes/memory.rs": "644d05077324156bbfca12202e670d18b71cb5309fece173fcb1ba491189c0b9",
+            "memoria/crates/memoria-core/src/sensitivity.rs": "ec9a524bc6c15dd7f9731837976189368ff4afb4d7d8b7cf64be42b049ab4128"
+          },
+          "generated_at_utc": "2026-10-09T03:20:59Z",
+          "isolated_checkout": "/Users/muuushroom/gitrepos/memoria-fusion-baseline",
+          "profile": "dev (unoptimized + debuginfo)",
+          "rrf_patch": {
+            "path": "build-provenance/full-rrf.patch",
+            "sha256": "f9105f48e996cf2b692e2d091edbad90b3e79c5d598caaf882788066636a34e3",
+            "source": "Captured uncommitted primary memoria/crates/memoria-service/src/service.rs diff; applied mechanically after baseline build."
+          },
+          "runtime_actions": "No API server started or stopped; no DB or credential operations.",
+          "rustc": "rustc 1.98.0 (88d9e12ae 2026-08-18)",
+          "source_commit": "6247235e27bc62898b122473dafae084bea61c80",
+          "target": "aarch64-apple-darwin",
+          "validation": [
+            "Both cargo builds passed.",
+            "git diff --check passed.",
+            "Common source diff unchanged between builds.",
+            "Applied RRF diff exactly matches captured primary diff.",
+            "git apply --reverse --check passed for both original compatibility patches.",
+            "Both binaries report memoria 0.5.2 and are Mach-O arm64 executables."
+          ],
+          "working_directory": "/Users/muuushroom/gitrepos/memoria-fusion-baseline/memoria"
+        },
+        "embedding_dim": 1024,
+        "embedding_model": "bge-m3",
+        "embedding_proxy": "http://127.0.0.1:18200/v1",
+        "governance": false,
+        "graph_preparation": "same frozen graph for both variants; default backfill API caps each user at 500 active memories",
+        "reader_or_judge": false,
+        "variant": "rrf",
+        "workers": 1
+      },
+      "file_sha256": {
+        "execution-provenance.json": "5299a253b715f438344b30cd0a82178e3e99bf947c4eb1e9afa9978e9bbe9f1e",
+        "manifest.json": "7aef2908c14d6bb0ca271adcacd0400dd338d944824c898ae1100c86d818b90f",
+        "metrics.json": "cc2576d5f74ae9e3c535c15a096aaf5528d2c288b5698647786a3780b3845a3a",
+        "retrieval.jsonl": "ae350ca9c4fb93ebd57a06e7f2118ee85d004b7f63d43759ee7b32c8ada4e934",
+        "summary.json": "f9eff405ae985cc6665f87ead4a0c0cbc4b59f610766b4ac9dabb1efe3b9b579"
+      }
+    }
+  },
+  "status": "complete_gates_passed"
+}

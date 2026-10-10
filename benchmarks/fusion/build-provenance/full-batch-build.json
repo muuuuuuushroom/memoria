@@ -1,0 +1,70 @@
+{
+  "generated_at_utc": "2026-10-09",
+  "source_commit": "6247235e27bc62898b122473dafae084bea61c80",
+  "inherited_build_provenance": "full-build.json",
+  "common_patch_sha256": "de58ff135dbaab3dd9d2bc05a5b562aa8e3cde1ca4738d551447fa93970c09df",
+  "rrf_patch_sha256": "f9105f48e996cf2b692e2d091edbad90b3e79c5d598caaf882788066636a34e3",
+  "batch_patch": {
+    "path": "full-batch-backfill.patch",
+    "sha256": "3a912d98cbcb55f9555bd7893dd2e0bfe1d7fd69dfcf67ebb123fb11fab12fa6"
+  },
+  "backfill_rs_sha256": "b7d8567d0ea65c633329cc091269510329e6780b0b3174df8607fc37cdc86e48",
+  "command": "CARGO_TARGET_DIR=/Users/muuushroom/gitrepos/memoria/memoria/target cargo build -p memoria-cli --bin memoria",
+  "build_directory": "/Users/muuushroom/gitrepos/memoria-fusion-baseline/memoria",
+  "build_profile": "dev (unoptimized + debuginfo)",
+  "target": "aarch64-apple-darwin",
+  "compiler": "rustc 1.98.0 (88d9e12ae 2026-08-18)",
+  "baseline": {
+    "path": "runtime/bin/full-baseline-memoria",
+    "sha256": "12cedb5add1aea7595b3bdcb99c3dd9d36cad9cf6c2e35492137b43a77197650",
+    "patches": [
+      "full-common.patch",
+      "full-batch-backfill.patch"
+    ],
+    "build_seconds": 45.89
+  },
+  "rrf": {
+    "path": "runtime/bin/full-rrf-memoria",
+    "sha256": "5c1292fc8f3087f3fea3ee4cd94187e58c01fdca134743a474f8cb1be4d32436",
+    "patches": [
+      "full-common.patch",
+      "full-rrf.patch",
+      "full-batch-backfill.patch"
+    ],
+    "build_seconds": 60
+  },
+  "preserved_originals": [
+    {
+      "path": "runtime/bin/full-baseline-pre-batch-memoria",
+      "sha256": "297b794a01abf3b36f90f9eb1603c5d346b8008e46d6707117b97c377bed6133"
+    },
+    {
+      "path": "runtime/bin/full-rrf-pre-batch-memoria",
+      "sha256": "15726e8bd1234ee64dc3b7cf0074b214bd3de462ce76d3299744c01de6d387f2"
+    }
+  ],
+  "behavior": {
+    "entity_plan": "Normalized names deduplicated per user; first encountered original entity.name and entity_type win, matching prior backfill display behavior; every distinct memory/name association retained.",
+    "id_resolution": "Existing batch_upsert_entities resolves IDs once per user with 50-row chunks; map reused across memories.",
+    "writes": "All entity IDs and memory links persisted before graph nodes mark completion; failures propagate. Partial entity/link writes are idempotent on retry. Graph content/embedding/confidence/time fields unchanged; no new graph edges.",
+    "limits": [
+      "Existing 500-memory per-user cap retained.",
+      "Graph node existence checks and creation remain sequential.",
+      "Existing already-created graph nodes are skipped; this does not repair links lost by earlier versions.",
+      "No same-user concurrent backfill protection added.",
+      "No explicit transaction across entity, link and node batches."
+    ]
+  },
+  "validation": {
+    "structural": [
+      "rustfmt completed.",
+      "git diff --check passed in both checkouts.",
+      "Both cargo builds passed.",
+      "Both checkouts have byte-identical backfill.rs.",
+      "Compatibility patch files unchanged."
+    ],
+    "unit_test_command": "cd /Users/muuushroom/gitrepos/memoria/memoria && cargo test -p memoria-storage --lib graph::backfill::tests:: -- --nocapture",
+    "unit_tests": "5 focused tests added; execution and final behavioral validation owned by parent agent.",
+    "no_api_or_database_actions": true
+  }
+}

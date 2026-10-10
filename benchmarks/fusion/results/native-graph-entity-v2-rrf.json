@@ -1,0 +1,240 @@
+{
+  "dataset_id": "memoria-graph-entity-v2",
+  "version": "v1.0",
+  "scenario_count": 10,
+  "overall_score": 57.83,
+  "overall_grade": "D",
+  "by_difficulty": {
+    "L5": 71.39,
+    "L4": 48.8
+  },
+  "by_tag": {
+    "interruption": 42.78,
+    "trust": 57.83,
+    "drift": 85.56,
+    "conflict": 69.59
+  },
+  "by_domain": {
+    "team": 47.59,
+    "engineering": 62.22
+  },
+  "by_source_family": {},
+  "by_longmemeval_category": {},
+  "by_beam_ability": {},
+  "results": [
+    {
+      "scenario_id": "GRAPH2-001",
+      "title": "Four-hop chain: person → team → project → dependency → vulnerability",
+      "domain": "engineering",
+      "difficulty": "L5",
+      "horizon": "long",
+      "tags": [
+        "trust"
+      ],
+      "source_family": null,
+      "question_type": null,
+      "official_category": null,
+      "official_category_label": null,
+      "total_score": 57.22,
+      "grade": "D",
+      "mqs_precision": 33.33,
+      "mqs_recall": 100.0,
+      "mqs_noise_rejection": 50.0,
+      "aus_step_success": 100.0,
+      "aus_assertion_pass": 0.0
+    },
+    {
+      "scenario_id": "GRAPH2-002",
+      "title": "Entity alias resolution: React = ReactJS = React.js",
+      "domain": "engineering",
+      "difficulty": "L4",
+      "horizon": "medium",
+      "tags": [
+        "trust"
+      ],
+      "source_family": null,
+      "question_type": null,
+      "official_category": null,
+      "official_category_label": null,
+      "total_score": 46.39,
+      "grade": "D",
+      "mqs_precision": 66.67,
+      "mqs_recall": 66.67,
+      "mqs_noise_rejection": 0.0,
+      "aus_step_success": 100.0,
+      "aus_assertion_pass": 0.0
+    },
+    {
+      "scenario_id": "GRAPH2-003",
+      "title": "Negative relationship: A is incompatible with B",
+      "domain": "engineering",
+      "difficulty": "L4",
+      "horizon": "medium",
+      "tags": [
+        "conflict",
+        "trust"
+      ],
+      "source_family": null,
+      "question_type": null,
+      "official_category": null,
+      "official_category_label": null,
+      "total_score": 53.61,
+      "grade": "D",
+      "mqs_precision": 66.67,
+      "mqs_recall": 100.0,
+      "mqs_noise_rejection": 0.0,
+      "aus_step_success": 100.0,
+      "aus_assertion_pass": 0.0
+    },
+    {
+      "scenario_id": "GRAPH2-004",
+      "title": "Multi-entity convergence: two independent chains point to same conclusion",
+      "domain": "engineering",
+      "difficulty": "L5",
+      "horizon": "long",
+      "tags": [
+        "trust"
+      ],
+      "source_family": null,
+      "question_type": null,
+      "official_category": null,
+      "official_category_label": null,
+      "total_score": 100.0,
+      "grade": "S",
+      "mqs_precision": 100.0,
+      "mqs_recall": 100.0,
+      "mqs_noise_rejection": 100.0,
+      "aus_step_success": 100.0,
+      "aus_assertion_pass": 100.0
+    },
+    {
+      "scenario_id": "GRAPH2-005",
+      "title": "Entity state evolution: technology adoption lifecycle",
+      "domain": "engineering",
+      "difficulty": "L5",
+      "horizon": "long",
+      "tags": [
+        "drift",
+        "conflict",
+        "trust"
+      ],
+      "source_family": null,
+      "question_type": null,
+      "official_category": null,
+      "official_category_label": null,
+      "total_score": 85.56,
+      "grade": "A",
+      "mqs_precision": 33.33,
+      "mqs_recall": 100.0,
+      "mqs_noise_rejection": 100.0,
+      "aus_step_success": 100.0,
+      "aus_assertion_pass": 100.0
+    },
+    {
+      "scenario_id": "GRAPH2-006",
+      "title": "Person → multiple projects → shared risk",
+      "domain": "team",
+      "difficulty": "L4",
+      "horizon": "medium",
+      "tags": [
+        "trust"
+      ],
+      "source_family": null,
+      "question_type": null,
+      "official_category": null,
+      "official_category_label": null,
+      "total_score": 35.56,
+      "grade": "D",
+      "mqs_precision": 33.33,
+      "mqs_recall": 50.0,
+      "mqs_noise_rejection": 0.0,
+      "aus_step_success": 100.0,
+      "aus_assertion_pass": 0.0
+    },
+    {
+      "scenario_id": "GRAPH2-007",
+      "title": "Technology → team → contact routing",
+      "domain": "team",
+      "difficulty": "L4",
+      "horizon": "medium",
+      "tags": [
+        "trust"
+      ],
+      "source_family": null,
+      "question_type": null,
+      "official_category": null,
+      "official_category_label": null,
+      "total_score": 53.61,
+      "grade": "D",
+      "mqs_precision": 66.67,
+      "mqs_recall": 100.0,
+      "mqs_noise_rejection": 0.0,
+      "aus_step_success": 100.0,
+      "aus_assertion_pass": 0.0
+    },
+    {
+      "scenario_id": "GRAPH2-008",
+      "title": "Shared dependency risk: multiple services affected by one library",
+      "domain": "engineering",
+      "difficulty": "L4",
+      "horizon": "medium",
+      "tags": [
+        "trust"
+      ],
+      "source_family": null,
+      "question_type": null,
+      "official_category": null,
+      "official_category_label": null,
+      "total_score": 50.0,
+      "grade": "D",
+      "mqs_precision": 75.0,
+      "mqs_recall": 75.0,
+      "mqs_noise_rejection": 0.0,
+      "aus_step_success": 100.0,
+      "aus_assertion_pass": 0.0
+    },
+    {
+      "scenario_id": "GRAPH2-009",
+      "title": "Indirect config dependency: env var → service behavior → user impact",
+      "domain": "engineering",
+      "difficulty": "L5",
+      "horizon": "long",
+      "tags": [
+        "trust",
+        "interruption"
+      ],
+      "source_family": null,
+      "question_type": null,
+      "official_category": null,
+      "official_category_label": null,
+      "total_score": 42.78,
+      "grade": "D",
+      "mqs_precision": 50.0,
+      "mqs_recall": 66.67,
+      "mqs_noise_rejection": 0.0,
+      "aus_step_success": 100.0,
+      "aus_assertion_pass": 0.0
+    },
+    {
+      "scenario_id": "GRAPH2-010",
+      "title": "Cross-domain entity: same person in engineering and management contexts",
+      "domain": "team",
+      "difficulty": "L4",
+      "horizon": "medium",
+      "tags": [
+        "trust"
+      ],
+      "source_family": null,
+      "question_type": null,
+      "official_category": null,
+      "official_category_label": null,
+      "total_score": 53.61,
+      "grade": "D",
+      "mqs_precision": 66.67,
+      "mqs_recall": 100.0,
+      "mqs_noise_rejection": 0.0,
+      "aus_step_success": 100.0,
+      "aus_assertion_pass": 0.0
+    }
+  ]
+}

@@ -1,0 +1,353 @@
+{
+  "dataset_id": "memoria-core-v2",
+  "version": "v1.0",
+  "scenario_count": 15,
+  "overall_score": 69.44,
+  "overall_grade": "C",
+  "by_difficulty": {
+    "L2": 65.78,
+    "L3": 71.27
+  },
+  "by_tag": {
+    "drift": 97.59,
+    "trust": 65.3,
+    "interruption": 51.32,
+    "conflict": 76.39
+  },
+  "by_domain": {
+    "engineering": 62.35,
+    "compliance": 100.0,
+    "legal": 85.56,
+    "devops": 52.17,
+    "assistant": 80.93
+  },
+  "by_source_family": {},
+  "by_longmemeval_category": {},
+  "by_beam_ability": {},
+  "results": [
+    {
+      "scenario_id": "CORE2-001",
+      "title": "Negation memory: 'do NOT use X'",
+      "domain": "engineering",
+      "difficulty": "L2",
+      "horizon": "short",
+      "tags": [
+        "trust",
+        "conflict"
+      ],
+      "source_family": null,
+      "question_type": null,
+      "official_category": null,
+      "official_category_label": null,
+      "total_score": 46.39,
+      "grade": "D",
+      "mqs_precision": 33.33,
+      "mqs_recall": 100.0,
+      "mqs_noise_rejection": 0.0,
+      "aus_step_success": 100.0,
+      "aus_assertion_pass": 0.0
+    },
+    {
+      "scenario_id": "CORE2-002",
+      "title": "Exact version number recall",
+      "domain": "engineering",
+      "difficulty": "L2",
+      "horizon": "short",
+      "tags": [
+        "trust"
+      ],
+      "source_family": null,
+      "question_type": null,
+      "official_category": null,
+      "official_category_label": null,
+      "total_score": 64.44,
+      "grade": "C",
+      "mqs_precision": 66.67,
+      "mqs_recall": 100.0,
+      "mqs_noise_rejection": 50.0,
+      "aus_step_success": 100.0,
+      "aus_assertion_pass": 0.0
+    },
+    {
+      "scenario_id": "CORE2-003",
+      "title": "Memory deletion: purged fact must not appear",
+      "domain": "compliance",
+      "difficulty": "L2",
+      "horizon": "short",
+      "tags": [
+        "trust",
+        "drift"
+      ],
+      "source_family": null,
+      "question_type": null,
+      "official_category": null,
+      "official_category_label": null,
+      "total_score": 100.0,
+      "grade": "S",
+      "mqs_precision": 100.0,
+      "mqs_recall": 100.0,
+      "mqs_noise_rejection": 100.0,
+      "aus_step_success": 100.0,
+      "aus_assertion_pass": 100.0
+    },
+    {
+      "scenario_id": "CORE2-004",
+      "title": "High-noise recall: 1 signal in 8 distractors",
+      "domain": "engineering",
+      "difficulty": "L3",
+      "horizon": "short",
+      "tags": [
+        "trust"
+      ],
+      "source_family": null,
+      "question_type": null,
+      "official_category": null,
+      "official_category_label": null,
+      "total_score": 60.83,
+      "grade": "C",
+      "mqs_precision": 33.33,
+      "mqs_recall": 100.0,
+      "mqs_noise_rejection": 66.67,
+      "aus_step_success": 100.0,
+      "aus_assertion_pass": 0.0
+    },
+    {
+      "scenario_id": "CORE2-005",
+      "title": "Implicit causality: symptom → root cause",
+      "domain": "engineering",
+      "difficulty": "L3",
+      "horizon": "medium",
+      "tags": [
+        "trust",
+        "interruption"
+      ],
+      "source_family": null,
+      "question_type": null,
+      "official_category": null,
+      "official_category_label": null,
+      "total_score": 40.97,
+      "grade": "D",
+      "mqs_precision": 33.33,
+      "mqs_recall": 75.0,
+      "mqs_noise_rejection": 0.0,
+      "aus_step_success": 100.0,
+      "aus_assertion_pass": 0.0
+    },
+    {
+      "scenario_id": "CORE2-006",
+      "title": "Temporal ordering: most recent decision wins",
+      "domain": "engineering",
+      "difficulty": "L3",
+      "horizon": "long",
+      "tags": [
+        "drift",
+        "conflict"
+      ],
+      "source_family": null,
+      "question_type": null,
+      "official_category": null,
+      "official_category_label": null,
+      "total_score": 92.78,
+      "grade": "S",
+      "mqs_precision": 66.67,
+      "mqs_recall": 100.0,
+      "mqs_noise_rejection": 100.0,
+      "aus_step_success": 100.0,
+      "aus_assertion_pass": 100.0
+    },
+    {
+      "scenario_id": "CORE2-007",
+      "title": "Tool result memory: cached command output",
+      "domain": "engineering",
+      "difficulty": "L2",
+      "horizon": "short",
+      "tags": [
+        "trust"
+      ],
+      "source_family": null,
+      "question_type": null,
+      "official_category": null,
+      "official_category_label": null,
+      "total_score": 50.0,
+      "grade": "D",
+      "mqs_precision": 50.0,
+      "mqs_recall": 100.0,
+      "mqs_noise_rejection": 0.0,
+      "aus_step_success": 100.0,
+      "aus_assertion_pass": 0.0
+    },
+    {
+      "scenario_id": "CORE2-008",
+      "title": "Long-text memory: key fact buried in paragraph",
+      "domain": "legal",
+      "difficulty": "L3",
+      "horizon": "medium",
+      "tags": [
+        "trust"
+      ],
+      "source_family": null,
+      "question_type": null,
+      "official_category": null,
+      "official_category_label": null,
+      "total_score": 85.56,
+      "grade": "A",
+      "mqs_precision": 33.33,
+      "mqs_recall": 100.0,
+      "mqs_noise_rejection": 100.0,
+      "aus_step_success": 100.0,
+      "aus_assertion_pass": 100.0
+    },
+    {
+      "scenario_id": "CORE2-009",
+      "title": "Preference specificity: general vs specific rule",
+      "domain": "assistant",
+      "difficulty": "L3",
+      "horizon": "medium",
+      "tags": [
+        "trust",
+        "conflict"
+      ],
+      "source_family": null,
+      "question_type": null,
+      "official_category": null,
+      "official_category_label": null,
+      "total_score": 65.97,
+      "grade": "C",
+      "mqs_precision": 33.33,
+      "mqs_recall": 100.0,
+      "mqs_noise_rejection": 50.0,
+      "aus_step_success": 100.0,
+      "aus_assertion_pass": 50.0
+    },
+    {
+      "scenario_id": "CORE2-010",
+      "title": "Multi-step procedure recall",
+      "domain": "devops",
+      "difficulty": "L3",
+      "horizon": "medium",
+      "tags": [
+        "interruption",
+        "trust"
+      ],
+      "source_family": null,
+      "question_type": null,
+      "official_category": null,
+      "official_category_label": null,
+      "total_score": 52.17,
+      "grade": "D",
+      "mqs_precision": 80.0,
+      "mqs_recall": 80.0,
+      "mqs_noise_rejection": 0.0,
+      "aus_step_success": 100.0,
+      "aus_assertion_pass": 0.0
+    },
+    {
+      "scenario_id": "CORE2-011",
+      "title": "Numeric threshold precision: wrong number must be excluded",
+      "domain": "engineering",
+      "difficulty": "L2",
+      "horizon": "short",
+      "tags": [
+        "trust"
+      ],
+      "source_family": null,
+      "question_type": null,
+      "official_category": null,
+      "official_category_label": null,
+      "total_score": 68.06,
+      "grade": "C",
+      "mqs_precision": 66.67,
+      "mqs_recall": 100.0,
+      "mqs_noise_rejection": 66.67,
+      "aus_step_success": 100.0,
+      "aus_assertion_pass": 0.0
+    },
+    {
+      "scenario_id": "CORE2-012",
+      "title": "Contradictory user corrections: latest correction wins",
+      "domain": "assistant",
+      "difficulty": "L3",
+      "horizon": "long",
+      "tags": [
+        "drift",
+        "conflict"
+      ],
+      "source_family": null,
+      "question_type": null,
+      "official_category": null,
+      "official_category_label": null,
+      "total_score": 100.0,
+      "grade": "S",
+      "mqs_precision": 100.0,
+      "mqs_recall": 100.0,
+      "mqs_noise_rejection": 100.0,
+      "aus_step_success": 100.0,
+      "aus_assertion_pass": 100.0
+    },
+    {
+      "scenario_id": "CORE2-013",
+      "title": "Scope isolation: project-specific vs global preference",
+      "domain": "assistant",
+      "difficulty": "L3",
+      "horizon": "medium",
+      "tags": [
+        "trust",
+        "conflict"
+      ],
+      "source_family": null,
+      "question_type": null,
+      "official_category": null,
+      "official_category_label": null,
+      "total_score": 76.81,
+      "grade": "B",
+      "mqs_precision": 83.33,
+      "mqs_recall": 100.0,
+      "mqs_noise_rejection": 50.0,
+      "aus_step_success": 100.0,
+      "aus_assertion_pass": 50.0
+    },
+    {
+      "scenario_id": "CORE2-014",
+      "title": "Recall after many unrelated stores",
+      "domain": "engineering",
+      "difficulty": "L3",
+      "horizon": "long",
+      "tags": [
+        "trust",
+        "interruption"
+      ],
+      "source_family": null,
+      "question_type": null,
+      "official_category": null,
+      "official_category_label": null,
+      "total_score": 60.83,
+      "grade": "C",
+      "mqs_precision": 33.33,
+      "mqs_recall": 100.0,
+      "mqs_noise_rejection": 66.67,
+      "aus_step_success": 100.0,
+      "aus_assertion_pass": 0.0
+    },
+    {
+      "scenario_id": "CORE2-015",
+      "title": "Mixed language memory: Chinese + English",
+      "domain": "engineering",
+      "difficulty": "L3",
+      "horizon": "short",
+      "tags": [
+        "trust"
+      ],
+      "source_family": null,
+      "question_type": null,
+      "official_category": null,
+      "official_category_label": null,
+      "total_score": 76.81,
+      "grade": "B",
+      "mqs_precision": 83.33,
+      "mqs_recall": 100.0,
+      "mqs_noise_rejection": 50.0,
+      "aus_step_success": 100.0,
+      "aus_assertion_pass": 50.0
+    }
+  ]
+}

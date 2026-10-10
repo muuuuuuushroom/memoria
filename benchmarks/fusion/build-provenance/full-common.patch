@@ -1,0 +1,61 @@
+diff --git a/memoria/crates/memoria-api/src/routes/memory.rs b/memoria/crates/memoria-api/src/routes/memory.rs
+index becebb3..acd670e 100644
+--- a/memoria/crates/memoria-api/src/routes/memory.rs
++++ b/memoria/crates/memoria-api/src/routes/memory.rs
+@@ -12,6 +12,8 @@ use memoria_core::nullable_str_from_row;
+ use memoria_service::ListActiveOptions;
+ 
+ type ApiResult<T> = Result<Json<T>, (StatusCode, String)>;
++const MAX_RETRIEVAL_TOP_K: i64 = 200;
++
+ pub fn api_err(e: impl std::fmt::Display) -> (StatusCode, String) {
+     tracing::error!(error = %e, "internal server error");
+     (StatusCode::INTERNAL_SERVER_ERROR, e.to_string())
+@@ -389,7 +391,7 @@ pub async fn retrieve(
+ ) -> ApiResult<serde_json::Value> {
+     req.validate()
+         .map_err(|err| (StatusCode::UNPROCESSABLE_ENTITY, err))?;
+-    let top_k = req.top_k.clamp(1, 100);
++    let top_k = req.top_k.clamp(1, MAX_RETRIEVAL_TOP_K);
+     let level = memoria_service::ExplainLevel::from_str_or_bool(&req.explain);
+     let retrieve_options = req
+         .retrieve_options()
+@@ -436,7 +438,7 @@ pub async fn search(
+ ) -> ApiResult<serde_json::Value> {
+     req.validate()
+         .map_err(|err| (StatusCode::UNPROCESSABLE_ENTITY, err))?;
+-    let top_k = req.top_k.clamp(1, 100);
++    let top_k = req.top_k.clamp(1, MAX_RETRIEVAL_TOP_K);
+     let level = memoria_service::ExplainLevel::from_str_or_bool(&req.explain);
+     let retrieve_options = req
+         .retrieve_options()
+diff --git a/memoria/crates/memoria-core/src/sensitivity.rs b/memoria/crates/memoria-core/src/sensitivity.rs
+index 3045aca..38186d8 100644
+--- a/memoria/crates/memoria-core/src/sensitivity.rs
++++ b/memoria/crates/memoria-core/src/sensitivity.rs
+@@ -104,8 +104,25 @@ static COMPILED: Lazy<Vec<(&'static Pattern, Regex)>> = Lazy::new(|| {
+         .collect()
+ });
+ 
++// Benchmark harnesses sometimes need byte-for-byte ingestion of synthetic
++// public datasets. Keep the production default enabled, but allow an explicit
++// process-level opt-out for those controlled runs.
++static FILTER_ENABLED: Lazy<bool> = Lazy::new(|| {
++    std::env::var("MEMORIA_SENSITIVITY_FILTER_ENABLED")
++        .map(|value| !matches!(value.trim().to_ascii_lowercase().as_str(), "0" | "false" | "no"))
++        .unwrap_or(true)
++});
++
+ /// Check content for PII/credentials. Returns a `SensitivityResult`.
+ pub fn check_sensitivity(text: &str) -> SensitivityResult {
++    if !*FILTER_ENABLED {
++        return SensitivityResult {
++            blocked: false,
++            redacted_content: None,
++            matched_labels: vec![],
++        };
++    }
++
+     // HIGH tier — any match blocks immediately
+     for (p, re) in COMPILED.iter() {
+         if p.tier == SensitivityTier::High && re.is_match(text) {

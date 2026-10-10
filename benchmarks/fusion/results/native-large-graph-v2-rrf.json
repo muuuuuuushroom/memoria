@@ -1,0 +1,63 @@
+{
+  "dataset_id": "memoria-large-graph-v2",
+  "version": "v1.0",
+  "scenario_count": 2,
+  "overall_score": 0.0,
+  "overall_grade": "D",
+  "by_difficulty": {
+    "L5": 0.0
+  },
+  "by_tag": {
+    "trust": 0.0
+  },
+  "by_domain": {
+    "engineering": 0.0
+  },
+  "by_source_family": {},
+  "by_longmemeval_category": {},
+  "by_beam_ability": {},
+  "results": [
+    {
+      "scenario_id": "LARGE2-001",
+      "title": "Large org: person → team → service → vulnerability chain",
+      "domain": "engineering",
+      "difficulty": "L5",
+      "horizon": "long",
+      "tags": [
+        "trust"
+      ],
+      "source_family": null,
+      "question_type": null,
+      "official_category": null,
+      "official_category_label": null,
+      "total_score": 0.0,
+      "grade": "D",
+      "mqs_precision": 0.0,
+      "mqs_recall": 0.0,
+      "mqs_noise_rejection": 100.0,
+      "aus_step_success": 0.0,
+      "aus_assertion_pass": 0.0
+    },
+    {
+      "scenario_id": "LARGE2-002",
+      "title": "Microservice dependency graph: upstream/downstream impact analysis",
+      "domain": "engineering",
+      "difficulty": "L5",
+      "horizon": "long",
+      "tags": [
+        "trust"
+      ],
+      "source_family": null,
+      "question_type": null,
+      "official_category": null,
+      "official_category_label": null,
+      "total_score": 0.0,
+      "grade": "D",
+      "mqs_precision": 0.0,
+      "mqs_recall": 0.0,
+      "mqs_noise_rejection": 100.0,
+      "aus_step_success": 0.0,
+      "aus_assertion_pass": 0.0
+    }
+  ]
+}

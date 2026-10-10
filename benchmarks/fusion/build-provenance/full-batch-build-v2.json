@@ -1,0 +1,27 @@
+{
+  "defect": "Long data URI entity from NER exceeded mem_entities VARCHAR limits; INSERT IGNORE truncated it to 200 chars, then strict ID map lookup failed the whole backfill request.",
+  "fix": "Filter name/display by chars().count() <= 200 and entity_type <= 20 before dedupe/batch upsert. Invalid entities are skipped with warning; valid entities and links continue. No truncation or synthetic entities.",
+  "patch": "full-batch-backfill-v2.patch",
+  "patch_sha256": "f0d6525394223bf79ec73ac26ea8427d5a8928e558524b0cb8563f66f72456ac",
+  "backfill_sha256": "186059608a5e0a75ea3a106e6dcd5441af8d3bcffb7d22cb5341595ac8ea92ea",
+  "source_commit": "6247235e27bc62898b122473dafae084bea61c80",
+  "build_command": "CARGO_TARGET_DIR=/Users/muuushroom/gitrepos/memoria/memoria/target cargo build -p memoria-cli --bin memoria",
+  "binary_sha256": {
+    "baseline": "5464330acbaff0608cb6a54d8b30c924b9002dc76ea130914ea6bd8bb29d414b",
+    "rrf": "feb133991f8e71181ae441387de22f774a926db378304885907141a8bd12e5ac"
+  },
+  "preserved_pre_v2": {
+    "baseline": "297b794a01abf3b36f90f9eb1603c5d346b8008e46d6707117b97c377bed6133",
+    "rrf": "15726e8bd1234ee64dc3b7cf0074b214bd3de462ce76d3299744c01de6d387f2"
+  },
+  "tests": "cargo test -p memoria-storage --lib graph::backfill::tests:: -- --nocapture",
+  "new_tests": [
+    "long_data_uri_entity_does_not_discard_valid_memory_links",
+    "entity_character_limits_keep_unicode_boundaries_without_truncation",
+    "invalid_first_type_does_not_hide_later_storable_duplicate"
+  ],
+  "validation": [
+    "Both binaries rebuilt from same v2 backfill; cargo builds passed; diff check passed; API/DB not touched."
+  ],
+  "limitation": "Existing graph-node cap and no cross-batch transaction remain."
+}

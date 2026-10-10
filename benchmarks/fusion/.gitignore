@@ -1,0 +1,6 @@
+assets/
+runtime/
+logs/
+.fastembed_cache/
+__pycache__/
+*.env

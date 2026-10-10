@@ -1,0 +1,15 @@
+services:
+  matrixone:
+    image: matrixorigin/matrixone@sha256:4455f6904a0cca5bb0f876d3026c407755216f91a4413a623c028495e0bba20f
+    container_name: memoria-fusion-matrixone
+    ports:
+      - "16001:6001"
+    volumes:
+      - fusion-matrixone-data:/mo-data
+      - fusion-matrixone-logs:/logs
+      - ../../config/matrixone:/etc/memoria:ro
+    entrypoint: ["/mo-service"]
+    command: ["-debug-http=:12345", "-launch", "/etc/memoria/launch.toml"]
+volumes:
+  fusion-matrixone-data:
+  fusion-matrixone-logs:

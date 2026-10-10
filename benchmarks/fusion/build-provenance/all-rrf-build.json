@@ -1,0 +1,48 @@
+{
+  "source_commit": "6247235e27bc62898b122473dafae084bea61c80",
+  "binary": "runtime/bin/all-rrf-memoria",
+  "binary_sha256": "779ee922203c23d3ea3d81d7073ccdac30163f5d11753597fbe0dbae348e205d",
+  "service_rs_sha256": "dba691777d7c43835c9c6cc19a1d79616ba6cda554ccf61c5432eecf44d98bfb",
+  "all_rrf_patch": "all-rrf-service.patch",
+  "all_rrf_patch_sha256": "fde1e8335a837aed67e6c0090b8a635be8b25868f17cb1076419e6643bd67120",
+  "common_patch": "full-common.patch",
+  "common_patch_sha256": "de58ff135dbaab3dd9d2bc05a5b562aa8e3cde1ca4738d551447fa93970c09df",
+  "backfill_patch": "full-batch-backfill-v2.patch",
+  "backfill_patch_sha256": "f0d6525394223bf79ec73ac26ea8427d5a8928e558524b0cb8563f66f72456ac",
+  "patch_note": "all-rrf-service.patch is the full service delta from base6247235, including original RRF changes. Do not additionally apply full-rrf.patch.",
+  "command": "CARGO_TARGET_DIR=/Users/muuushroom/gitrepos/memoria/memoria/target cargo build -p memoria-cli --bin memoria",
+  "checkout": "/Users/muuushroom/gitrepos/memoria-fusion-baseline/memoria",
+  "compiler": "rustc 1.98.0 (88d9e12ae 2026-08-18)",
+  "profile": "dev",
+  "build_seconds": 44.85,
+  "configuration": {
+    "RRF_ALL_CHANNELS": "Defaults false. true/1/yes enables all-channel routing.",
+    "RRF_GRAPH_WEIGHT": "Defaults1; finite positive; ignored when experimental routing disabled.",
+    "RRF_HYBRID_WEIGHT": "Defaults1; finite positive; set2 for hybrid2:graph1 experiment.",
+    "k": 60
+  },
+  "routing": "Eligible graph requests always followed by hybrid; same top_k channel depth. Graph empty => hybrid-only RRF, hybrid empty => graph-only RRF, both empty => fulltext fallback. Single-channel rank order preserved. All-channel requests do not guarantee both channels have candidates. Existing filter guards and embedding availability still apply.",
+  "verbose_explain": {
+    "fusion_policy": "all_channels_rrf",
+    "channel_weight": {
+      "graph": 1,
+      "hybrid": "1 or 2"
+    }
+  },
+  "preserved_binary_sha256": {
+    "baseline": "5464330acbaff0608cb6a54d8b30c924b9002dc76ea130914ea6bd8bb29d414b",
+    "rrf": "feb133991f8e71181ae441387de22f774a926db378304885907141a8bd12e5ac"
+  },
+  "test_manifest": [
+    "tests::fusion_uses_channel_ranks_independently_of_score_scale",
+    "tests::fusion_deduplicates_each_channel_and_rewards_overlap_once",
+    "tests::fusion_handles_empty_limit_and_nonfinite_scores_stably",
+    "tests::fusion_all_policy_keeps_hybrid_competing_when_graph_fills_top_k",
+    "tests::fusion_all_single_channel_preserves_order_and_graph_when_hybrid_empty",
+    "tests::fusion_all_weighted_cross_over_and_overlap_are_explicit",
+    "tests::fusion_all_policy_defaults_and_invalid_weights_are_isolated"
+  ],
+  "exact_test_command": "CARGO_TARGET_DIR=/Users/muuushroom/gitrepos/memoria/memoria/target cargo test -p memoria-service --lib fusion_ -- --nocapture",
+  "execution_script": "benchmarks/fusion/run_all_rrf_experiment.py",
+  "validation": "Build and rustfmt/diffcheck passed; parent validator reports seven focused tests PASS (65 filtered). Script py_compile and paused-validation/resume/500-success acceptance/embedding rejection simulations PASS. No services launched."
+}
